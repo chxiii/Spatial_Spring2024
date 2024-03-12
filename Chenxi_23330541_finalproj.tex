@@ -1,0 +1,206 @@
+\documentclass[12pt]{article} % Document class, and 12 pt
+
+% Packages
+\usepackage[utf8]{inputenc} % Input encoding
+\usepackage[T1]{fontenc}    % Output encoding
+\usepackage{textcomp} % print euro symbol
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{graphicx} % insert picture
+\usepackage{array}
+\usepackage{setspace}
+\usepackage{titlesec} % make section 12pt and bold
+\usepackage{natbib} % Harvard reference format
+\usepackage[hang, bottom]{footmisc} % no space in footnote
+\usepackage{hyperref}
+\usepackage{tikz} % draw a text structure
+\usepackage{subcaption} % insert sub figure
+
+% make sections pt 12 and bold
+\titleformat{\section}{\bfseries\fontsize{12}{14}\selectfont\centering}{\thesection}{1em}{}
+% no space between sections
+\titlespacing{\section}{0pt}{\parskip}{-\parskip}
+% make subsections pt 12 and bold
+\titleformat{\subsection}{\bfseries\fontsize{12}{14}\selectfont}{\thesection}{1em}{}
+% no space btween subsections
+\titlespacing{\subsection}{0pt}{\parskip}{-\parskip}
+
+\doublespacing
+\setlength{\parskip}{\baselineskip}
+
+\definecolor{github-light-bg}{RGB}{255, 255, 255}
+\definecolor{github-light-fg}{RGB}{3, 102, 214}
+\definecolor{github-light-yellow}{RGB}{128, 102, 0}
+\definecolor{github-light-orange}{RGB}{170, 0, 17}
+\definecolor{github-light-purple}{RGB}{102, 51, 153}
+\definecolor{github-light-cyan}{RGB}{0, 128, 128}
+\definecolor{github-light-green}{RGB}{0, 128, 0}
+\definecolor{github-light-red}{RGB}{204, 0, 0}
+
+\lstdefinestyle{githublight}{
+	backgroundcolor=\color{github-light-bg},
+	basicstyle=\color{github-light-fg}\ttfamily,
+	commentstyle=\color{github-light-green},
+	keywordstyle=\color{github-light-purple},
+	numberstyle=\tiny\color{github-light-fg},
+	stringstyle=\color{github-light-cyan},
+	identifierstyle=\color{github-light-orange},
+	emphstyle=\color{github-light-red},
+	emph={[2]TRUE,FALSE},
+	emphstyle={[2]\color{github-light-yellow}},
+	breaklines=true,
+	breakatwhitespace=true,
+	numbers=left,
+	numbersep=5pt,
+	stepnumber=1,
+	showstringspaces=false,
+	frame=single,
+	rulecolor=\color{github-light-fg},
+	framerule=0.5pt,
+	tabsize=4,
+	columns=flexible,
+	extendedchars=true,
+	inputencoding=utf8,
+	upquote=true,
+}
+
+\lstset{style=githublight}
+
+% Page layout settings
+\usepackage[a4paper, margin=2.5cm]{geometry} % Set paper size and margins
+
+\title{Experimental Methods for Social Scientist }
+\date{Due: March 1, 2024}
+\author{Chenxi Li}
+
+\begin{document}
+
+\begin{figure}[h]
+	\centering
+	\vspace{-2.5cm}
+	\hspace{-8cm}
+	\includegraphics[width=12cm]{Trinity_icon.jpg}  
+\end{figure}
+
+\vspace{.5cm}
+\begin{center}
+    {\fontsize{17.28}{22}\selectfont\bfseries School of Social Sciences and Philosophy} \\
+    {\fontsize{17.28}{22}\selectfont\bfseries Assignment Submission Form}
+\end{center}
+
+\vspace{.7cm}
+
+
+\begin{center}
+		\begin{tabular}{|>{\arraybackslash}p{4cm}|>{\arraybackslash}p{8cm}|}
+			\hline
+			Student Name: & Chenxi Li\\
+			\hline
+			Student ID Number: & 23330541 \\
+			\hline
+			Programme Title: & Applied Social Data Science \\
+			\hline
+			Module Title: & Spatial Data Analyst \\
+			\hline
+			Assessment Title: & \textit{Assessment: Essay}\\
+			\hline
+			Lecture (s): & Prof. Martina Kirchberger \\
+			\hline
+			Date Submitted: & \today \\
+			\hline
+		\end{tabular}
+\end{center}
+
+\vspace{.7cm}
+
+\noindent I have read and I understand the plagiarism provisions in the General Regulations of the University Calendar for the current year, found at:  \url{http://www.tcd.ie/calendar} 
+\par
+\noindent I have also completed the Online Tutorial on avoiding plagiarism ‘Ready, Steady, Write’, located at \url{http://tcd-ie.libguides.com/plagiarism/ready-steady-write} 
+
+\vspace{.7cm}
+
+
+\begin{flushleft}
+	\begin{minipage}{0.5\linewidth}
+		\textbf{Signature:}
+		\raisebox{-0.3\height}{\includegraphics[width=0.6\linewidth]{signature.png}}
+	\end{minipage}
+\end{flushleft}
+
+\vspace{.3cm}
+
+\noindent \textbf{Date: } \today
+
+\newpage
+\begin{center}
+	\textbf{Spatial Data Analysis, Hilary Term 2024}\\
+	\textbf{\textit{Course Project (Max 1000 words)}} \\
+	\textbf{Word Count: 785 words \& 2 exhibits} \\
+	\vspace{.3cm}
+	\textbf{Chenxi Li, 23330541}
+\end{center}
+
+\vspace{.5cm}
+
+\noindent My data set is migration data from the \textit{immigrants, emigrants and Net Migration} section of the Migration Policy Instituion (MPI)\footnote[1]{Migration Policy Instituion, MPI, is an American liberal think tank which provides information of migration and refugee trends. The website of this data set is: \url{https://www.migrationpolicy.org/programs/data-hub/international-migration-statistics}}. Data from MPI is usually used for immigration research like immigrants trend \citep{stalker2002migration, helbling2018migration}, the relationship between poverty reductions and immigrants amount \citep{newland2004beyond}, etc. This data set is combined with 3 different spatial data, (1) the first is the net number of migrants by country from 1950 to 2020, (2) the second is immigrant and emigrant populations by country of origin and destination at mid-2020 estimates, (3) and the third is the total immigrant and emigrant populations by Country. The spatial data set (1) is raster data, (2) and (3) is vector data. The following table is the data overview and composition ideas used in this project.
+
+\noindent In these three data, I found some potential vulnerabilities. I will divide my views into two parts, the discussion about the first data set \textendash\ that is, raster data; and the second and third data set \textemdash\ that is, vector data. The following table is the data overview and composition ideas used in this project.
+
+\begin{center}
+		\begin{tabular}[h]{|c|c|c|c|}
+			\hline
+			Num & Data Set Name & Type & Discuss\\
+			\hline
+			1 & Net Number of Migrants by Country, 1950-2020 & Raster & Part 1. \\
+			\hline
+			2 & Immigrant and Emigrant Populations by Country, mid-2020 & Vector & Part 2. \\
+			3 & Total Immigrant and Emigrant Populations by Country & Vector & Part 2. \\
+			\hline
+		\end{tabular}
+\end{center}
+
+\newpage
+
+\section*{Limitation Discussion - Raster Data Set 1}
+
+\vspace{.3cm}
+
+\noindent For data set 1, the problem lies in the boxing of the year. This data set can only select time periods every 5 years, which is from 1950 \textendash\ 1955 as the first category and 2015 \textendash\ 2020 as the last category, instead of single years. Although the last year 2020 is explored in more detail in Data Sets 2 and 3, I did not find options to isolate other (1950 \textendash\ 2019) single years in other data sets.
+
+\noindent Some scholars have pointed out that the study of historical trends in immigration involves many complex public issues \citep{lapinski1997trends}, if the time window selected is too broad, it is easy to lose details or make things complicated in the process. For example, if a researcher wants to study Japanese immigration and emigration during Japan's bubble economy (1989 \textendash\ 1991), then when the researcher uses the two-year boxes 1985 \textendash\ 90, which refers to a 298,000 decrease and 1990 \textendash\ 95, which refers to a 46,000 increase, other society events will be mixed in. Those social impactive events, such as the Plaza Accord in 1985 and the Great Hanshin earthquake in 1995, prevent researchers from being able to separate the variable of bubble economy well, and finally lead to a conclusion bias in research. In his paper, Tsuchida discussed the history and reasons for Japanese emigration, which showed a different motivation between different ages \citep{tsuchida1998history}, which is powerful evidence of this argument.
+
+\section*{Limitation Discussion \textendash\ Vector Data Set 2 \& 3}
+
+\vspace{.3cm}
+
+\noindent Data sets 2 and 3 together tell the story of immigrant inflows and outflows in 2020. For data set 2, readers can choose a country and then read where this country's immigrants come from; for data set 3, shows the immigration and emigration of each country's population in 2020. I hold the view that this part of the spatial data is on the one hand, too general and does not take into account the impact of world events, especially covid-19, and on the other hand, it is missing many demographic characteristics of immigrants.
+
+\noindent The relationship between health and immigration is not a new issue, especially in the cross field to public health \citep{read2005arab, kandula2004assuring}. This flaw will be further highlighted when scholars focus on immigration flows and COVID-19 public health \citep{page2020undocumented}. The same possible shortcomings also occur in demographic characteristics. For example, in a study of farmers and workers using this data \citep{anderson2021rethinking}, the researcher needs to merge the data sets based on the characteristics of occupation, which may cause incorrect variables. Problems such as different immigration counting methods lead to deviations in the final conclusion. In addition, more basic demographic characteristics such as gender and age, which also play a huge role in immigration research at specific time points \citep{berger2013immigrant, igoa2013inner}, are also missing in this data. This may lead a worse performance in the paper's replication and reproduction. In addition, another very important flaw is that in both data set 2 and data set 3, the size of the circle only refers to the number of immigrants, instead of the immigrant population accounting for the total population of the country. 
+
+\section*{Appendix}
+
+\noindent The Appendix shows the basic contents of the three data sets. Data set 1 selects the global view, data set 2 selects the united state as the base country, and data set 3 selects the immigrants view.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\caption{Data set 1}
+		\includegraphics[width=\textwidth]{dataset_1.pdf}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\caption{Data set 2}
+		\includegraphics[width=\textwidth]{dataset_2.pdf}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\caption{Data set 3}
+		\includegraphics[width=\textwidth]{dataset_3.pdf}
+	\end{subfigure}
+\end{figure}
+
+\newpage
+\bibliographystyle{agsm}
+\bibliography{mybibliography}
+\end{document}
